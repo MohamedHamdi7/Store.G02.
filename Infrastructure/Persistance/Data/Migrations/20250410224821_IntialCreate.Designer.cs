@@ -11,8 +11,8 @@ using Persistance.Data.Contexts;
 namespace Persistance.Data.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250410172809_Intialcreate")]
-    partial class Intialcreate
+    [Migration("20250410224821_IntialCreate")]
+    partial class IntialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,9 +32,6 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,20 +47,7 @@ namespace Persistance.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productBrandId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("productTypeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("productBrandId");
-
-                    b.HasIndex("productTypeId");
 
                     b.ToTable("Products");
                 });
@@ -100,25 +84,6 @@ namespace Persistance.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
-                });
-
-            modelBuilder.Entity("Domain.Models.Product", b =>
-                {
-                    b.HasOne("Domain.Models.ProductBrand", "productBrand")
-                        .WithMany()
-                        .HasForeignKey("productBrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Models.ProductType", "productType")
-                        .WithMany()
-                        .HasForeignKey("productTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("productBrand");
-
-                    b.Navigation("productType");
                 });
 #pragma warning restore 612, 618
         }

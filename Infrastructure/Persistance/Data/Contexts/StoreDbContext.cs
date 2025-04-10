@@ -30,7 +30,11 @@ namespace Persistance.Data.Contexts
 
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //from the same solution
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AssemblyReference).Assembly); //from the project persistance
+
             base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<Product>().HasData(new Product() { });
+            
         }
 
     }

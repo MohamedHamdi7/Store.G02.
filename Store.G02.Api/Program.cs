@@ -1,12 +1,14 @@
 
+using Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Persistance.Data.Contexts;
+using Persistance.Seedingclass;
 
 namespace Store.G02.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -27,8 +29,23 @@ namespace Store.G02.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddScoped<IDbIntializer, DbIntializer>();  //Allow DI to create object DbIntializer
 
             var app = builder.Build();
+
+
+            // code seeding >>>to update db
+            #region Seeding
+            using var scope = app.Services.CreateScope();
+
+            var dbIntializer = scope.ServiceProvider.GetRequiredService<IDbIntializer>();  //Ask Clr To Create object DbIntializer
+
+            await dbIntializer.IntializeAsync();
+
+            #endregion
+
+
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
