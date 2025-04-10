@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using Persistance.Data.Contexts;
+
 namespace Store.G02.Api
 {
     public class Program
@@ -13,6 +16,17 @@ namespace Store.G02.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+
+            builder.Services.AddDbContext<StoreDbContext>(options =>
+            {
+                //options.UseSqlServer("DefaultConnection");
+                //or
+                //options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);
+                //or
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
 
             var app = builder.Build();
 
