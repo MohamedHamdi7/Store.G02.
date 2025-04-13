@@ -11,6 +11,6 @@ namespace Services.manger
 {
     public class ServiceManger (IUnitOfWork unitOfWork,IMapper mapper): IServiceManger
     {
-        public IProductService productService { get; } = new ProductService(unitOfWork, mapper);
+        public IProductService productService { get; } = new ProductService(unitOfWork, mapper); //prop
     }
 }

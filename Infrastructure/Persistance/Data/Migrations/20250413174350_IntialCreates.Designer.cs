@@ -11,8 +11,8 @@ using Persistance.Data.Contexts;
 namespace Persistance.Data.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20250410224821_IntialCreate")]
-    partial class IntialCreate
+    [Migration("20250413174350_IntialCreates")]
+    partial class IntialCreates
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,6 +32,9 @@ namespace Persistance.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,7 +50,14 @@ namespace Persistance.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("TypeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("TypeId");
 
                     b.ToTable("Products");
                 });
@@ -84,6 +94,25 @@ namespace Persistance.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductTypes");
+                });
+
+            modelBuilder.Entity("Domain.Models.Product", b =>
+                {
+                    b.HasOne("Domain.Models.ProductBrand", "productBrand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.ProductType", "productType")
+                        .WithMany()
+                        .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("productBrand");
+
+                    b.Navigation("productType");
                 });
 #pragma warning restore 612, 618
         }
