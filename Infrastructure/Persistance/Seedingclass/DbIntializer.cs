@@ -11,7 +11,7 @@ using Persistance.Data.Contexts;
 
 namespace Persistance.Seedingclass
 {
-    public class DbIntializer : IDbIntializer
+    public class DbIntializer  : IDbIntializer
     {
         private readonly StoreDbContext context;
 
