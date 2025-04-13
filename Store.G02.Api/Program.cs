@@ -61,6 +61,8 @@ namespace Store.G02.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseStaticFiles();  // to make server to return static file
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
