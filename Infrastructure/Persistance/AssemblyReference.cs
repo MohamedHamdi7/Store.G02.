@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Persistance.Assembly
+namespace Persistance
 {
     public class AssemblyReference
     {
-
-        // Used To Get Configuration Assembly From Same Project it is in
     }
 }

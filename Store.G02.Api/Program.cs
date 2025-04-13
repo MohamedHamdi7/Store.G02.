@@ -2,7 +2,11 @@
 using Domain.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Persistance.Data.Contexts;
+using Persistance.Repositories;
 using Persistance.Seedingclass;
+using Services;
+using Services.Abstraction;
+using Services.manger;
 
 namespace Store.G02.Api
 {
@@ -30,7 +34,10 @@ namespace Store.G02.Api
             });
 
             builder.Services.AddScoped<IDbIntializer, DbIntializer>();  //Allow DI to create object DbIntializer
-
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork >();
+            builder.Services.AddAutoMapper(typeof(MapperReference).Assembly);
+            builder.Services.AddScoped<IServiceManger, ServiceManger>();
+            
             var app = builder.Build();
 
 
