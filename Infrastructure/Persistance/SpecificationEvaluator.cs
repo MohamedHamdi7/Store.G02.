@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
-    internal class SpecificationEvaluator
+    static class SpecificationEvaluator
     {
         // to Generate StaticQuery
         public static IQueryable<TEntity> GetQuery<TEntity,TKey>(IQueryable<TEntity> InputQuery,ISpecification<TEntity,TKey> Spec) 

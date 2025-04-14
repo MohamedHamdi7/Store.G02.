@@ -66,10 +66,23 @@ namespace Persistance.Repositories
            
         }
 
-       
+        public async Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity, TKey> spec, bool trackchanges = false)
+        {
+          return await AplySpecification(spec).ToListAsync();
+        }
 
-       
+        public async Task<TEntity> GetAsync(ISpecification<TEntity, TKey> spec, TKey id)
+        {
+            return await AplySpecification(spec).FirstOrDefaultAsync();
+        }
 
-       
+        private IQueryable<TEntity> AplySpecification( ISpecification<TEntity,TKey> spec)
+        {
+            return SpecificationEvaluator.GetQuery(context.Set<TEntity>(), spec);
+
+            // this method To Filter Dublicate retun IQuarable
+        }
     }
+
+    
 }
