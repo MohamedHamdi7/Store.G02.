@@ -43,7 +43,9 @@ namespace Persistance.Repositories
         {
             if(typeof(TEntity)==typeof(Product))
             {
-                return await context.Products.Include(p=>p.productBrand).Include(P=>P.productType).FirstOrDefaultAsync(P=>P.Id==id as int?) as TEntity;
+                //return await context.Products.Include(p=>p.productBrand).Include(P=>P.productType).FirstOrDefaultAsync(P=>P.Id==id as int?) as TEntity;
+                return await context.Products.Where(p=>p.Id==id as int?).Include(p => p.productBrand).Include(P => P.productType).FirstOrDefaultAsync() as TEntity;
+
             }
             return await context.Set<TEntity>().FindAsync(id);
         }
