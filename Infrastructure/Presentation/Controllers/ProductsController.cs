@@ -10,6 +10,13 @@ using Shared.Dto;
 
 namespace Presentation.Controllers
 {
+    //Sorting
+    //sort:nameasc[default]
+    //sort:namedesc
+    //sort:priceasc
+    //sort:pricedesc
+
+
 
     [ApiController]
     [Route("api/[controller]")]
@@ -18,9 +25,9 @@ namespace Presentation.Controllers
         //Endpoint Public Non-Static Method
 
         [HttpGet]  //Get >> /api/Products
-        public async Task<IActionResult> GetAllProducts(int? brandId , int? typeId)
+        public async Task<IActionResult> GetAllProducts(int? brandId , int? typeId , string? sort)
         {
-            var result = await serviceManger.productService.GetAllProductAsync(brandId,typeId);
+            var result = await serviceManger.productService.GetAllProductAsync(brandId,typeId,sort);
             if (result is null) return BadRequest();  //StutasCode 400
             return Ok(result); //200 
         }
