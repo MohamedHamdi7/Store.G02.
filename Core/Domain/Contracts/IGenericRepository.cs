@@ -13,7 +13,7 @@ namespace Domain.Contracts
         Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity,TKay> spec ,bool trackchanges=false);
 
         Task<TEntity> GetAsync(TKay id);
-        Task<TEntity> GetAsync(ISpecification<TEntity, TKay> spec, TKay id);
+        Task<TEntity> GetAsync(ISpecification<TEntity, TKay> spec);
 
         Task AddAsync(TEntity entity);
 
