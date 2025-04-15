@@ -13,5 +13,8 @@ namespace Domain.Contracts
         public Expression<Func<TEntity,bool>>? Criteria { get; set; } //prop
 
         public List<Expression<Func<TEntity,object>>> IncludeExpressions { get; set; }  //prop
+        public Expression<Func<TEntity, object>>? OrderBy { get; set; } //prop
+        public Expression<Func<TEntity, object>>? OrderByDescending { get; set; } //prop
+
     }
 }
