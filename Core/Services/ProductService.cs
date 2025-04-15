@@ -17,13 +17,15 @@ namespace Services
     {
 
        
-        public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync()
+        public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync(int? brandId, int? typeId)
         {
             //Get All Products Throught ProductRepository(unit of work)
-            var spec = new ProductWithBrandsAndTypesSpecifications();
+
+            var spec = new ProductWithBrandsAndTypesSpecifications( brandId ,  typeId);
           var Products = await unitOfWork.GetRepository<Product,int>().GetAllAsync(spec);
 
             //convert IEnumerable<Product> To IEnumerable<ProductResultDto>
+
           var result=   mapper.Map<IEnumerable<ProductResultDto>>(Products);
             return result;
         }

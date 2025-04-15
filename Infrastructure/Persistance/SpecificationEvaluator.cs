@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistance
 {
+    //Static class >>class member method
     static class SpecificationEvaluator
     {
         // to Generate StaticQuery
