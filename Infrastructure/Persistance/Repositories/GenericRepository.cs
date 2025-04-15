@@ -39,6 +39,8 @@ namespace Persistance.Repositories
                 : await context.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
+
+
         public async Task<TEntity> GetAsync(TKey id)
         {
             if(typeof(TEntity)==typeof(Product))
@@ -71,7 +73,7 @@ namespace Persistance.Repositories
           return await AplySpecification(spec).ToListAsync();
         }
 
-        public async Task<TEntity> GetAsync(ISpecification<TEntity, TKey> spec, TKey id)
+        public async Task<TEntity> GetAsync(ISpecification<TEntity, TKey> spec)
         {
             return await AplySpecification(spec).FirstOrDefaultAsync();
         }
