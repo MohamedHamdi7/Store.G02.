@@ -25,9 +25,9 @@ namespace Presentation.Controllers
         //Endpoint Public Non-Static Method
 
         [HttpGet]  //Get >> /api/Products
-        public async Task<IActionResult> GetAllProducts(int? brandId , int? typeId , string? sort)
+        public async Task<IActionResult> GetAllProducts(int? brandId , int? typeId , string? sort , int Pageindex=1 , int Pagesize=1)
         {
-            var result = await serviceManger.productService.GetAllProductAsync(brandId,typeId,sort);
+            var result = await serviceManger.productService.GetAllProductAsync(brandId,typeId,sort,Pageindex,Pagesize);
             if (result is null) return BadRequest();  //StutasCode 400
             return Ok(result); //200 
         }

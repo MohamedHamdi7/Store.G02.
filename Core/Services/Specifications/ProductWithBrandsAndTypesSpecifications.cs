@@ -16,7 +16,7 @@ namespace Services.Specifications
         }
 
 
-        public ProductWithBrandsAndTypesSpecifications(int? brandId , int? typeId ,string? sort) 
+        public ProductWithBrandsAndTypesSpecifications(int? brandId , int? typeId ,string? sort ,int Pageindex,int Pagesize) 
             :base(
                  P=>
                  (!brandId.HasValue||P.BrandId==brandId)&&
@@ -28,6 +28,7 @@ namespace Services.Specifications
             ApplyInclude();
 
             ApplySorting(sort);
+            ApplyPagination(Pageindex, Pagesize);
         }
 
         private void ApplyInclude()
