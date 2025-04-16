@@ -17,11 +17,11 @@ namespace Services
     {
 
        
-        public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync(int? brandId, int? typeId, string? sort)
+        public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync(int? brandId, int? typeId, string? sort, int Pageindex = 1, int Pagesize = 1)
         {
             //Get All Products Throught ProductRepository(unit of work)
 
-            var spec = new ProductWithBrandsAndTypesSpecifications( brandId ,  typeId , sort);
+            var spec = new ProductWithBrandsAndTypesSpecifications( brandId ,  typeId , sort, Pageindex,Pagesize);
             
             var Products = await unitOfWork.GetRepository<Product,int>().GetAllAsync(spec);
 

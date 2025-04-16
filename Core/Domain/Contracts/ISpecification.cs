@@ -16,5 +16,10 @@ namespace Domain.Contracts
         public Expression<Func<TEntity, object>>? OrderBy { get; set; } //prop
         public Expression<Func<TEntity, object>>? OrderByDescending { get; set; } //prop
 
+        public int Skip { get; set; }
+        public int Take { get; set; }
+
+        public bool IsPagination { get; set; }
+
     }
 }
