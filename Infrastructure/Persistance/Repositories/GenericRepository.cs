@@ -78,12 +78,19 @@ namespace Persistance.Repositories
             return await AplySpecification(spec).FirstOrDefaultAsync();
         }
 
+        public async Task<int> CountAsync(ISpecification<TEntity, TKey> spec)
+        {
+            return await AplySpecification(spec).CountAsync();
+        }
+
         private IQueryable<TEntity> AplySpecification( ISpecification<TEntity,TKey> spec)
         {
             return SpecificationEvaluator.GetQuery(context.Set<TEntity>(), spec);
 
             // this method To Filter Dublicate retun IQuarable
         }
+
+       
     }
 
     

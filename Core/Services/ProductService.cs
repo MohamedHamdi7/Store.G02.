@@ -19,7 +19,7 @@ namespace Services
 
 
         //public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync(int? brandId, int? typeId, string? sort, int Pageindex = 1, int Pagesize = 1)
-        public async Task<IEnumerable<ProductResultDto>> GetAllProductAsync(ProductSpecificationParamters specparams)
+        public async Task<PaginationResponse<ProductResultDto>> GetAllProductAsync(ProductSpecificationParamters specparams)
 
         {
             //Get All Products Throught ProductRepository(unit of work)
@@ -30,10 +30,15 @@ namespace Services
 
             var Products = await unitOfWork.GetRepository<Product,int>().GetAllAsync(spec);
 
+            var SpecCount = new ProductWithCountSpecification(specparams);
+
+            var Count=await unitOfWork.GetRepository<Product,int>().CountAsync(SpecCount);
+
             //convert IEnumerable<Product> To IEnumerable<ProductResultDto>
 
           var result=   mapper.Map<IEnumerable<ProductResultDto>>(Products);
-            return result;
+
+            return new PaginationResponse<ProductResultDto>(specparams.Pageindex, specparams.Pagesize, Count, result);
         }
 
         public async Task<ProductResultDto?> GetProductByIdAsync(int id)
@@ -68,7 +73,9 @@ namespace Services
 
         }
 
-       
+        
+
+
         // To Call This Services Make To Her Like Unit Of Work Called(ServerManger)
 
     }
