@@ -12,6 +12,7 @@ namespace Shared
         public int? TypeId { get; set; }
         public string? Sort { get; set; }
 
+        //fullprop
         private int _Pageindex=1;
         private int _Pagesize=5;
 

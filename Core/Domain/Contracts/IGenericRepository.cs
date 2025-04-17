@@ -9,6 +9,8 @@ namespace Domain.Contracts
 {
     public interface IGenericRepository<TEntity,TKay> where TEntity:BaseEntity<TKay>
     {
+        Task<int> CountAsync(ISpecification<TEntity, TKay> spec);
+
         Task<IEnumerable<TEntity>> GetAllAsync(bool trackchanges=false);
         Task<IEnumerable<TEntity>> GetAllAsync(ISpecification<TEntity,TKay> spec ,bool trackchanges=false);
 
