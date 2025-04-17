@@ -19,9 +19,12 @@ namespace Services.Specifications
 
         public ProductWithBrandsAndTypesSpecifications(ProductSpecificationParamters specparams) 
             :base(
-                 P=>
-                 (!specparams.BrandId.HasValue||P.BrandId== specparams.BrandId) &&
-                 (!specparams.TypeId.HasValue || P.TypeId==specparams.TypeId)
+                P=>
+               (string.IsNullOrEmpty(specparams.Search)||P.Name.ToLower().Contains(specparams.Search.ToLower()))
+                &&
+               (!specparams.BrandId.HasValue||P.BrandId== specparams.BrandId)
+                &&
+               (!specparams.TypeId.HasValue || P.TypeId==specparams.TypeId)
                  )
 
             
