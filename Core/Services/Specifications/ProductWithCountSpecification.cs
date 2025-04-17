@@ -12,9 +12,14 @@ namespace Services.Specifications
     public class ProductWithCountSpecification : BaseSpecifications<Product, int>
     {
         public ProductWithCountSpecification(ProductSpecificationParamters specparams) 
-            : base(P=>
-                    (!specparams.BrandId.HasValue || P.BrandId == specparams.BrandId) &&
-                 (!specparams.TypeId.HasValue || P.TypeId == specparams.TypeId)
+            : base(
+
+                  P=>
+              (string.IsNullOrEmpty(specparams.Search) || P.Name.ToLower().Contains(specparams.Search.ToLower()))
+            &&
+              (!specparams.BrandId.HasValue || P.BrandId == specparams.BrandId) 
+            &&
+              (!specparams.TypeId.HasValue || P.TypeId == specparams.TypeId)
 
                   )
         {

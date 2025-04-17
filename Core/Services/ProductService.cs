@@ -32,7 +32,7 @@ namespace Services
 
             var SpecCount = new ProductWithCountSpecification(specparams);
 
-            var Count=await unitOfWork.GetRepository<Product,int>().CountAsync(SpecCount);
+            var Count = await unitOfWork.GetRepository<Product,int>().CountAsync(SpecCount);
 
             //convert IEnumerable<Product> To IEnumerable<ProductResultDto>
 
