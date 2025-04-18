@@ -7,6 +7,7 @@ using Persistance.Seedingclass;
 using Services;
 using Services.Abstraction;
 using Services.manger;
+using Store.G02.Api.MiddleWare;
 
 namespace Store.G02.Api
 {
@@ -52,7 +53,7 @@ namespace Store.G02.Api
             #endregion
 
 
-
+            app.UseMiddleware<GlobalErrorHandlingMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
