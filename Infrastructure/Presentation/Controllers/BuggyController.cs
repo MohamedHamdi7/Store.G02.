@@ -27,7 +27,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("badrequest")]  //api/Buggy/BadRequest
-        public IActionResult GetBadRequest()  //validation Error
+        public IActionResult GetBadRequest()  
         {
             return BadRequest(); //400
         }

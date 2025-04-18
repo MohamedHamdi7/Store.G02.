@@ -43,7 +43,7 @@ namespace Presentation.Controllers
         public async Task<IActionResult> GetProductById(int id)
         {
           var result= await serviceManger.productService.GetProductByIdAsync(id);
-            if (result is null) return BadRequest();
+            //if (result is null) return BadRequest();
             return Ok(result);
         }
 
