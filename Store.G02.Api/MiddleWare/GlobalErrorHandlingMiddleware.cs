@@ -22,6 +22,7 @@ namespace Store.G02.Api.MiddleWare
             {
                await next.Invoke(context);
 
+                // Handling EndPoint Not Found 
                 if(context.Response.StatusCode==404)
                 {
                     context.Response.ContentType = "application/json";
@@ -56,6 +57,7 @@ namespace Store.G02.Api.MiddleWare
                     Message= ex.Message
                 };
 
+                // handling notfounderror if i send id not found
                 Response.StatusCode = ex switch
                 {
                     NotFoundExceptions=>StatusCodes.Status404NotFound,
