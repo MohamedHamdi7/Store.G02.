@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Persistance.Data.Contexts;
 using Persistance.Repositories;
 using Persistance.Seedingclass;
+using StackExchange.Redis;
 
 namespace Persistance
 {
@@ -28,6 +29,12 @@ namespace Persistance
 
            services.AddScoped<IDbIntializer, DbIntializer>();  //Allow DI to create object DbIntializer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
+
+            services.AddSingleton<IConnectionMultiplexer>((serviceProvider) =>
+            {
+                return ConnectionMultiplexer.Connect(configuration.GetConnectionString("Redis")!);
+            });
 
             return services;
         }

@@ -8,7 +8,8 @@ namespace Services.Abstraction
 {
     public interface IServiceManger
     {
-        public IProductService productService { get; } 
+        public IProductService productService { get; }
+        public IBasketServices basketServices { get; }
 
     }
 }
