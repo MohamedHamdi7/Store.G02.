@@ -11,6 +11,7 @@ namespace Presentation.Controllers
     [Route("api/[Controller]")]
     public class BuggyController:ControllerBase
     {
+        //
 
        [HttpGet("NotFound")]  //api/Buggy/NotFound
        public IActionResult GetNotFoundRequest()

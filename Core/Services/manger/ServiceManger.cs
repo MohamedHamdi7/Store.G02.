@@ -12,11 +12,14 @@ namespace Services.manger
     public class ServiceManger(
         IUnitOfWork unitOfWork,
         IMapper mapper,
-        IBasketRepository basketRepository
+        IBasketRepository basketRepository,
+        ICacheRepository cacheRepository
         ) : IServiceManger
     {
         public IProductService productService { get; } = new ProductService(unitOfWork, mapper); //prop
 
         public IBasketServices basketServices { get; } = new BasketServices(basketRepository, mapper);
+
+        public ICacheServices cacheServices { get; } = new CacheServices(cacheRepository);
     }
 }

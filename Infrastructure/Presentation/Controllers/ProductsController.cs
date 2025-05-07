@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Presentation.Attributes;
 using Services.Abstraction;
 using Shared;
 using Shared.Dto;
@@ -32,6 +33,7 @@ namespace Presentation.Controllers
         [ProducesResponseType(StatusCodes.Status200OK,Type=typeof(PaginationResponse<ProductResultDto>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError,Type=typeof(ValidationErrorsResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest,Type=typeof(ErrorDetails))]
+        [Cache(100)]
         public async Task<ActionResult<PaginationResponse<ProductResultDto>>> GetAllProducts([FromQuery]ProductSpecificationParamters specparams)
             //public async Task<IActionResult> GetAllProducts(int? brandId, int? typeId, string? sort, int Pageindex = 1, int Pagesize = 1)
         {
