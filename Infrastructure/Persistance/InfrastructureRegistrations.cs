@@ -30,6 +30,7 @@ namespace Persistance
            services.AddScoped<IDbIntializer, DbIntializer>();  //Allow DI to create object DbIntializer
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBasketRepository, BasketRepository>();
+            services.AddScoped<ICacheRepository, CacheRepository>();
 
             services.AddSingleton<IConnectionMultiplexer>((serviceProvider) =>
             {
